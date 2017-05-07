@@ -1,0 +1,35 @@
+body {
+	background-color: #FFFAF0;
+}
+
+h1 {
+	font-family: 'Jacques Francois Shadow', cursive;
+	font-size: 100px;
+	color: black;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.style {
+	max-width: 15%;
+	display: block;
+	margin: 0 auto;
+}
+
+.family {
+	max-width: 70%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.container {
+	margin-top: 40px;
+	display: inline;
+	text-align: center;
+}
+
+.border {
+	border-style: inset;
+	border-width: 2px;
+	border-color: red;
+}
