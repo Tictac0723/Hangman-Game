@@ -13,12 +13,18 @@
 
 <body>
     <script type="text/javascript">
-    var challenges = ["Tina", "Louise", "Linda", "Gene", "bob"];
+    var challenges = ["Tina", "Louise", "Linda", "Gene", "Bob"];
     var challenge = null;
     var word = null;
     var exposedChallenge = null;
+    var guessesRemaining = 5;
+    var textGuessesRemaining = null;
+    var wrongLetters = "";
+    var textWrongLetters = null;
 
     window.onload = function() {
+    	textWrongLetters = document.getElementById("wrong");
+    	textGuessesRemaining = document.getElementById("guessremaining");
         challenge = getRandomChallenge();
         word = document.getElementById("word");
         for (var i = 0; i < challenge.length; i++) {
@@ -53,8 +59,17 @@
 
             word.textContent = exposedChallenge;
         }
-
+        else  {
+        	guessesRemaining = guessesRemaining - 1; 
+        	textGuessesRemaining.textContent = guessesRemaining;
+        	if (wrongLetters.indexOf(character) === -1) {
+        	wrongLetters = wrongLetters + character;
+        	textWrongLetters.textContent = wrongLetters;
+        	
+       		 }
+        }
     };
+
 
     </script>
     <div class="title">
@@ -70,11 +85,14 @@
         <div class="col-md-6">
             <div class="border">
                 <p>Press Any Key to Get Started!</p>
-                <p id="word">_ _ _ _ _ _ _</p>
                 <p>Wins</p>
+                <p id="wins"> 0 </p>
                 <p>Current Word</p>
+                <p id="word">_ _ _ _ _ _ _</p>
                 <p>Number of Guesses Remaining</p>
+                <p id="guessremaining"> 5</p>
                 <p>Letters Already Guessed</p>
+                <p id="wrong">No Letters Yet!</p>
             </div>
         </div>
     </div>
