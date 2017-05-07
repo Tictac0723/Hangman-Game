@@ -1,35 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Hangman</title>
-		<link href="https://fonts.googleapis.com/css?family=Bangers|Jacques+Francois+Shadow|Ultra" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	</head>
-	<body>
-		<div class="title">
-			<h1>Hangman</h1>
-		</div>
-		
-		<img class="style" src="assets/images/logo.jpg">
-		<div class="container">
-			<div class="col-md-6">
-				<div class="border">
-					<img class="family" src="assets/images/burgers.jpg">
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="border">
-					<p>Press Any Key to Get Started!</p>
-					<p>Wins</p>
-					<p>Current Word</p>
-					<p>Number of Guesses Remaining</p>
-					<p>Letters Already Guessed</p>
-				</div>
-			</div>
-		</div>
-	</body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hangman</title>
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Jacques+Francois+Shadow|Ultra" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+    <script type="text/javascript">
+    var challenges = ["Tina", "Louise", "Linda", "Gene", "bob"];
+    var challenge = null;
+    var word = null;
+    var exposedChallenge = null;
+
+    window.onload = function() {
+        challenge = getRandomChallenge();
+        word = document.getElementById("word");
+        for (var i = 0; i < challenge.length; i++) {
+            if (exposedChallenge === null) {
+                exposedChallenge = "_";
+            } else {
+                exposedChallenge = exposedChallenge + "_";
+            }
+        }
+        word.textContent = exposedChallenge;
+    };
+
+    function getRandomChallenge() {
+        var randomInt = Math.floor((Math.random() * challenges.length) + 1);
+        return challenges[randomInt - 1];
+    }
+
+     function setCharAt(str, index, chr) {
+        if (index > str.length - 1) return str;
+        return str.substr(0, index) + chr + str.substr(index + 1);
+    }
+
+    document.onkeyup = function(e) {
+        var character = e.key;
+        if (challenge.includes(character)) {
+        	for(i=0; i<challenge.length; i++){
+        		var challengeCharacter = challenge.charAt(i);
+        		if (challengeCharacter===character) {
+        			exposedChallenge = setCharAt(exposedChallenge, i, character);
+        		}
+        	}
+
+            word.textContent = exposedChallenge;
+        }
+
+    };
+
+    </script>
+    <div class="title">
+        <h1>Hangman</h1>
+    </div>
+    <img class="style" src="assets/images/logo.jpg">
+    <div class="container">
+        <div class="col-md-6">
+            <div class="border">
+                <img class="family" src="assets/images/burgers.jpg">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border">
+                <p>Press Any Key to Get Started!</p>
+                <p id="word">_ _ _ _ _ _ _</p>
+                <p>Wins</p>
+                <p>Current Word</p>
+                <p>Number of Guesses Remaining</p>
+                <p>Letters Already Guessed</p>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
