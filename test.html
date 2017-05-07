@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <div class="jumbotron">
+                        <h2>You just typed <span id="user-text"><strong>...Nothing.</strong></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- We have to put this at the end of our document to ensure the user-text
+         span exists when we try to access it. -->
+        <script type="text/javascript">
+        // Let's start by grabbing a reference to the <span> below.
+        var userText = document.getElementById("user-text");
+        // Next, we give JavaScript a function to execute when onkeyup event fires.
+        document.onkeyup = function(e) {
+            userText.textContent = e.key;
+        };
+
+        var challenges = ["Tina", "Louise", "Gene", "Linda", "Bob"];
+
+        function getRandomChallenge() {
+            var randomInt = Math.floor((Math.random() * challenges.length) + 1);
+            return challenges[randomInt - 1];
+        }
+
+        console.log(getRandomChallenge())
+        </script>
+    </body>
+
+</html>f

@@ -16,7 +16,7 @@ h1 {
 	margin: 0 auto;
 }
 
-.family {
+#family {
 	max-width: 70%;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -32,4 +32,26 @@ h1 {
 	border-style: inset;
 	border-width: 2px;
 	border-color: red;
+}
+
+p {
+	font-family: 'Quicksand', sans-serif;
+}
+
+.head {
+	font-size: 20px;
+	color: red;
+	font-weight: bold;
+}
+
+hr {
+	border: solid 2px black;
+	height: 2px;
+	color: black;
+}
+
+.start {
+	font-size: 30px;
+	font-weight: bolder;
+	
 }
